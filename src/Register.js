@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Button,
   StyleSheet,
   Image,
   ScrollView,
@@ -105,7 +104,7 @@ function Register({ navigation }) {
       <Text style={styles.header}>تسجيل حساب جديد</Text>
       <View style={styles.form}>
         {/* Username */}
-        <Text style={styles.label}>اسم المستخدم</Text>
+        <Text style={styles.label}>اسم المستخدم *</Text>
         <View style={styles.field}>
           <AntDesign name='user' size={20} color='gray' />
           <TextInput
@@ -117,6 +116,7 @@ function Register({ navigation }) {
         </View>
 
         {/* Phone Number */}
+        <Text style={styles.label}>رقم الهاتف *</Text>
         <View style={{ ...styles.field, justifyContent: 'space-between' }}>
           <TextInput
             style={styles.input}
@@ -141,7 +141,7 @@ function Register({ navigation }) {
         </View>
 
         {/* Password */}
-        <Text style={styles.label}>كلمة المرور</Text>
+        <Text style={styles.label}>كلمة المرور *</Text>
         <View
           style={{
             ...styles.field,
@@ -164,9 +164,7 @@ function Register({ navigation }) {
               secureTextEntry={!showPassword}
             />
           </View>
-          <TouchableOpacity
-            onPress={() => setShowPassword((prev) => !prev)}
-          >
+          <TouchableOpacity onPress={() => setShowPassword((prev) => !prev)}>
             {showPassword ? (
               <Ionicons name='eye-off-outline' size={24} color='gray' />
             ) : (
@@ -176,7 +174,7 @@ function Register({ navigation }) {
         </View>
 
         {/* City */}
-        <Text style={styles.label}>المدينة</Text>
+        <Text style={styles.label}>المدينة *</Text>
         <View
           style={{
             ...styles.field,
@@ -205,10 +203,11 @@ function Register({ navigation }) {
         </View>
 
         {/* Gender */}
-        <Text style={styles.label}>الجنس</Text>
+        <Text style={styles.label}>الجنس *</Text>
         <View style={styles.radioGroup}>
           {genderOptions.map(({ label, value, Icon }, index) => (
             <View
+              key={index}
               style={{
                 display: 'flex',
                 flexDirection: 'row-reverse',
@@ -216,7 +215,7 @@ function Register({ navigation }) {
                 gap: 10,
               }}
             >
-              <RadioButton
+              <RadioButton.Android
                 key={index}
                 value={value}
                 status={gender === value ? 'checked' : 'unchecked'}
@@ -224,11 +223,13 @@ function Register({ navigation }) {
                 color='#49B0AC'
                 uncheckedColor='lightgray'
                 // thin border
+                
               />
               {Icon}
               <Text
                 style={{
                   fontSize: 16,
+                  color: 'gray',
                 }}
               >
                 {label}
