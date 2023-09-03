@@ -46,6 +46,7 @@ function Register({ navigation }) {
     mobileNum: '',
     password: '',
     city: '',
+    gender: '',
   })
 
   const genderOptions = [
@@ -123,7 +124,8 @@ function Register({ navigation }) {
         <Text
           style={{ ...styles.label, color: !!errors.username ? 'red' : 'gray' }}
         >
-          {errors.username ? errors.username : 'اسم المستخدم *'}
+          {!!errors.username ? errors.username : 'اسم المستخدم '}
+          {!!!errors.username && <Text style={{ color: 'red' }}>*</Text>}
         </Text>
         <View
           style={{
@@ -153,7 +155,8 @@ function Register({ navigation }) {
             color: !!errors.mobileNum ? 'red' : 'gray',
           }}
         >
-          {errors.mobileNum ? errors.mobileNum : 'رقم الهاتف *'}
+          {!!errors.mobileNum ? errors.mobileNum : 'رقم الهاتف '}
+          {!!!errors.mobileNum && <Text style={{ color: 'red' }}>*</Text>}
         </Text>
         <View
           style={{
@@ -191,11 +194,11 @@ function Register({ navigation }) {
         </View>
 
         {/* Password */}
-        {/* <Text style={styles.label}>كلمة المرور *</Text> */}
         <Text
           style={{ ...styles.label, color: !!errors.password ? 'red' : 'gray' }}
         >
-          {errors.password ? errors.password : 'كلمة المرور *'}
+          {!!errors.password ? errors.password : 'كلمة المرور '}
+          {!!!errors.password && <Text style={{ color: 'red' }}>*</Text>}
         </Text>
         <View
           style={{
@@ -239,7 +242,8 @@ function Register({ navigation }) {
         <Text
           style={{ ...styles.label, color: !!errors.city ? 'red' : 'gray' }}
         >
-          {errors.city ? errors.city : 'المدينة *'}
+          {!!errors.city ? errors.city : 'المدينة '}
+          {!!!errors.city && <Text style={{ color: 'red' }}>*</Text>}
         </Text>
         <View
           style={{
@@ -279,7 +283,8 @@ function Register({ navigation }) {
         <Text
           style={{ ...styles.label, color: !!errors.gender ? 'red' : 'gray' }}
         >
-          {errors.gender ? errors.gender : 'الجنس *'}
+          {!!errors.gender ? errors.gender : 'الجنس '}
+          {!!!errors.gender && <Text style={{ color: 'red' }}>*</Text>}
         </Text>
         <View style={styles.radioGroup}>
           {genderOptions.map(({ label, value, Icon }, index) => (
