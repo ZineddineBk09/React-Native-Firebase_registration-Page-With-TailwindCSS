@@ -1,65 +1,70 @@
-const styles = {
-    users: {
-      backgroundColor: "white",
-      padding: "20px",
-      textAlign: "center",
-    },
-    usersHeaderImg: {
-      maxWidth: "100%",
-    },
-    usersH1: {
-      fontSize: "24px",
-      marginTop: "10px",
-    },
-    registerForm: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    },
-    registerFormLabel: {
-      display: "block",
-      marginBottom: "10px",
-      textAlign: "right",
-    },
-    registerFormInput: {
-      width: "100%",
-      padding: "8px",
-      border: "1px solid #ccc",
-      borderRadius: "4px",
-    },
-    registerFormSelect: {
-      width: "100%",
-      padding: "8px",
-      border: "1px solid #ccc",
-      borderRadius: "4px",
-    },
-    registerFormP: {
-      textAlign: "right",
-      marginTop: "10px",
-      fontSize: "12px",
-    },
-    registerFormButton: {
-      backgroundColor: "#17dbce",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      padding: "10px 20px",
-      cursor: "pointer",
-      fontSize: "16px",
-    },
-    usersButton: {
-      backgroundColor: "#17dbce",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      padding: "10px 20px",
-      cursor: "pointer",
-      fontSize: "16px",
-    },
-    buttonHover: {
-      backgroundColor: "#17dbce",
-    },
-  };
-  
-  export default styles;
-  
+import { StyleSheet } from "react-native"
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 16,
+    backgroundColor: '#FFFFFF',
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+  },
+  header: {
+    textAlign: 'center',
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  form: {
+    marginBottom: 20,
+  },
+
+  field: {
+    position: 'relative',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderRadius: 11,
+    borderWidth: 1,
+    marginBottom: 20,
+    marginRight: 3,
+    paddingLeft: 20,
+    gap: 15,
+    height: 50,
+  },
+  label: {
+    textAlign: 'right',
+    marginBottom: 5,
+    color: 'gray',
+  },
+  input: {
+    width: '50%',
+    textAlign: 'right',
+  },
+  endEndorment: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f1f1f1',
+    overflow: 'hidden',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    gap: 5,
+    paddingHorizontal: 20,
+  },
+  radioGroup: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    gap: 30,
+  },
+})
+
+export default styles
