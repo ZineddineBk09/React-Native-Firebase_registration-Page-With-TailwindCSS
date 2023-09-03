@@ -7,7 +7,6 @@ import {
   Modal,
   View,
 } from 'react-native'
-import { Icon } from 'react-native-elements'
 import { AntDesign } from '@expo/vector-icons'
 
 const Dropdown = ({ key, data, onSelect }) => {
@@ -28,8 +27,8 @@ const Dropdown = ({ key, data, onSelect }) => {
   }
 
   const onItemPress = (item) => {
-    setSelected(item)
-    onSelect(item)
+    setSelected(item.key)
+    onSelect(item.value)
     setVisible(false)
   }
 
@@ -90,9 +89,9 @@ const styles = StyleSheet.create({
   dropdown: {
     position: 'absolute',
     backgroundColor: '#fff',
-    width: '80%',
-    left: '10%',
-    height: 200,
+    width: '90%',
+    left: '5%',
+    height: 250,
     overflow: 'auto',
     shadowColor: '#000000',
     shadowRadius: 4,
