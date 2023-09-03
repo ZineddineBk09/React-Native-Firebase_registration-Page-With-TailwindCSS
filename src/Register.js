@@ -182,6 +182,7 @@ function Register({ navigation }) {
             ...styles.field,
             justifyContent: 'space-between',
             paddingRight: 30,
+            position: 'relative',
           }}
         >
           <View

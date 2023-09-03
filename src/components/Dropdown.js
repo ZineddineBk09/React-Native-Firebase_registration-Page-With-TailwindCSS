@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOffset: { height: 4, width: 0 },
     shadowOpacity: 0.5,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: '#ccc',
   },
   overlay: {
     width: '100%',
@@ -105,7 +108,6 @@ const styles = StyleSheet.create({
   item: {
     paddingHorizontal: 10,
     paddingVertical: 10,
-    borderBottomWidth: 1,
   },
 })
 
