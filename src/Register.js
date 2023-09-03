@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from './firebase'
+import { Formik } from 'formik'
 import { AntDesign } from '@expo/vector-icons'
 import { EvilIcons } from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons'
@@ -40,6 +41,12 @@ function Register({ navigation }) {
   const [showPassword, setShowPassword] = useState(false)
   const [city, setCity] = useState('')
   const [gender, setGender] = useState('')
+  const [errors, setErrors] = useState({
+    username: '',
+    mobileNum: '',
+    password: '',
+    city: '',
+  })
 
   const genderOptions = [
     {
@@ -64,13 +71,19 @@ function Register({ navigation }) {
       }
 
       try {
-        await addDoc(collection(db, 'users'), {
+        console.log('submitting: ', {
           username,
           mobileNum,
           password,
           city,
-          gender,
         })
+        // await addDoc(collection(db, 'users'), {
+        //   username,
+        //   mobileNum,
+        //   password,
+        //   city,
+        //   gender,
+        // })
 
         setUsername('')
         setMobileNum('')
@@ -223,7 +236,6 @@ function Register({ navigation }) {
                 color='#49B0AC'
                 uncheckedColor='lightgray'
                 // thin border
-                
               />
               {Icon}
               <Text
