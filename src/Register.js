@@ -38,6 +38,7 @@ function Register({ navigation }) {
   const [username, setUsername] = useState('')
   const [mobileNum, setMobileNum] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [city, setCity] = useState('')
   const [gender, setGender] = useState('')
 
@@ -160,10 +161,18 @@ function Register({ navigation }) {
               placeholder='أدخل كلمة المرور'
               onChangeText={(text) => setPassword(text)}
               value={password}
-              secureTextEntry
+              secureTextEntry={!showPassword}
             />
           </View>
-          <Ionicons name='md-eye-outline' size={24} color='gray' />
+          <TouchableOpacity
+            onPress={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? (
+              <Ionicons name='eye-off-outline' size={24} color='gray' />
+            ) : (
+              <Ionicons name='md-eye-outline' size={24} color='gray' />
+            )}
+          </TouchableOpacity>
         </View>
 
         {/* City */}
