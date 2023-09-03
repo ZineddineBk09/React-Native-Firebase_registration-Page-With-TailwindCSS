@@ -240,7 +240,7 @@ function Register({ navigation }) {
         style={{
           textAlign: 'center',
           color: 'gray',
-          marginBottom: 20,
+          marginBottom: 40,
         }}
       >
         بالضغط على تسجيل الحساب، فإنك توافق على شروط وسياسة الخصوصية الخاصة
@@ -261,7 +261,7 @@ function Register({ navigation }) {
         style={{
           padding: 20,
           borderColor: '#49B0AC',
-          borderWidth: 1,
+          borderWidth: 2,
           borderRadius: 10,
           marginBottom: 20,
         }}
