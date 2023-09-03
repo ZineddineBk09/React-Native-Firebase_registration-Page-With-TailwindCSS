@@ -64,26 +64,22 @@ function Register({ navigation }) {
   const submitHandler = async () => {
     if (username && mobileNum && password && city && gender) {
       if (!validatePassword(password)) {
-        alert(
-          'Password must contain at least one special character and one capital letter.'
-        )
+        setErrors({
+          ...errors,
+          password:
+            'Password must contain at least one special character and one capital letter.',
+        })
         return
       }
 
       try {
-        console.log('submitting: ', {
+        await addDoc(collection(db, 'users'), {
           username,
           mobileNum,
           password,
           city,
+          gender,
         })
-        // await addDoc(collection(db, 'users'), {
-        //   username,
-        //   mobileNum,
-        //   password,
-        //   city,
-        //   gender,
-        // })
 
         setUsername('')
         setMobileNum('')
@@ -97,7 +93,14 @@ function Register({ navigation }) {
         alert('An error occurred. Please try again.')
       }
     } else {
-      alert('All fields are required.')
+      setErrors({
+        username: username ? '' : 'اسم المستخدم مطلوب',
+        mobileNum: mobileNum ? '' : 'رقم الهاتف مطلوب',
+        password: password ? '' : 'كلمة المرور مطلوبة',
+        city: city ? '' : 'المدينة مطلوبة',
+        gender: gender ? '' : 'الجنس مطلوب',
+      })
+      console.log('errors: ', errors)
     }
   }
 
@@ -117,24 +120,58 @@ function Register({ navigation }) {
       <Text style={styles.header}>تسجيل حساب جديد</Text>
       <View style={styles.form}>
         {/* Username */}
-        <Text style={styles.label}>اسم المستخدم *</Text>
-        <View style={styles.field}>
+        <Text
+          style={{ ...styles.label, color: !!errors.username ? 'red' : 'gray' }}
+        >
+          {errors.username ? errors.username : 'اسم المستخدم *'}
+        </Text>
+        <View
+          style={{
+            ...styles.field,
+            borderColor: !!errors.username ? 'red' : '#ccc',
+          }}
+        >
           <AntDesign name='user' size={20} color='gray' />
           <TextInput
             style={styles.input}
             placeholder='اسم المستخدم'
-            onChangeText={(text) => setUsername(text)}
+            onChangeText={(text) => {
+              setUsername(text)
+              setErrors({
+                ...errors,
+                username: '',
+              })
+            }}
             value={username}
           />
         </View>
 
         {/* Phone Number */}
-        <Text style={styles.label}>رقم الهاتف *</Text>
-        <View style={{ ...styles.field, justifyContent: 'space-between' }}>
+        <Text
+          style={{
+            ...styles.label,
+            color: !!errors.mobileNum ? 'red' : 'gray',
+          }}
+        >
+          {errors.mobileNum ? errors.mobileNum : 'رقم الهاتف *'}
+        </Text>
+        <View
+          style={{
+            ...styles.field,
+            justifyContent: 'space-between',
+            borderColor: errors.mobileNum ? 'red' : '#ccc',
+          }}
+        >
           <TextInput
             style={styles.input}
             placeholder='5********'
-            onChangeText={(text) => setMobileNum(text)}
+            onChangeText={(text) => {
+              setMobileNum(text)
+              setErrors({
+                ...errors,
+                mobileNum: '',
+              })
+            }}
             value={mobileNum}
             keyboardType='numeric'
           />
@@ -154,12 +191,18 @@ function Register({ navigation }) {
         </View>
 
         {/* Password */}
-        <Text style={styles.label}>كلمة المرور *</Text>
+        {/* <Text style={styles.label}>كلمة المرور *</Text> */}
+        <Text
+          style={{ ...styles.label, color: !!errors.password ? 'red' : 'gray' }}
+        >
+          {errors.password ? errors.password : 'كلمة المرور *'}
+        </Text>
         <View
           style={{
             ...styles.field,
             justifyContent: 'space-between',
             paddingRight: 30,
+            borderColor: errors.password ? 'red' : '#ccc',
           }}
         >
           <View style={{ display: 'flex', flexDirection: 'row-reverse' }}>
@@ -172,7 +215,13 @@ function Register({ navigation }) {
             <TextInput
               style={styles.input}
               placeholder='أدخل كلمة المرور'
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={(text) => {
+                setPassword(text)
+                setErrors({
+                  ...errors,
+                  password: '',
+                })
+              }}
               value={password}
               secureTextEntry={!showPassword}
             />
@@ -187,13 +236,18 @@ function Register({ navigation }) {
         </View>
 
         {/* City */}
-        <Text style={styles.label}>المدينة *</Text>
+        <Text
+          style={{ ...styles.label, color: !!errors.city ? 'red' : 'gray' }}
+        >
+          {errors.city ? errors.city : 'المدينة *'}
+        </Text>
         <View
           style={{
             ...styles.field,
             justifyContent: 'space-between',
             paddingRight: 30,
             position: 'relative',
+            borderColor: errors.city ? 'red' : '#ccc',
           }}
         >
           <View
@@ -211,12 +265,22 @@ function Register({ navigation }) {
           <Dropdown
             label='Select Item'
             data={states}
-            onSelect={(value) => setCity(value)}
+            onSelect={(value) => {
+              setCity(value)
+              setErrors({
+                ...errors,
+                city: '',
+              })
+            }}
           />
         </View>
 
         {/* Gender */}
-        <Text style={styles.label}>الجنس *</Text>
+        <Text
+          style={{ ...styles.label, color: !!errors.gender ? 'red' : 'gray' }}
+        >
+          {errors.gender ? errors.gender : 'الجنس *'}
+        </Text>
         <View style={styles.radioGroup}>
           {genderOptions.map(({ label, value, Icon }, index) => (
             <View
@@ -232,7 +296,13 @@ function Register({ navigation }) {
                 key={index}
                 value={value}
                 status={gender === value ? 'checked' : 'unchecked'}
-                onPress={() => setGender(value)}
+                onPress={() => {
+                  setGender(value)
+                  setErrors({
+                    ...errors,
+                    gender: '',
+                  })
+                }}
                 color='#49B0AC'
                 uncheckedColor='lightgray'
                 // thin border
